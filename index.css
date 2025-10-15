@@ -31,6 +31,9 @@ body {
     min-height: 350px;
     color: white;
     padding: 45px 23px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .home-container h1 {
