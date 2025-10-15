@@ -6,15 +6,16 @@ const ButtonLong = ({ children }) => {
 
     return (
         <>
-            {blackLongButton (
+            {orangeLongButton && (
                 <button style={{
                     display: 'inline-block',
                     textAlign: 'center',
                     textDecoration: 'none',
                     backgroundColor: '#FF8C38',
                     border: 'none',
-                    width: '100%',
-                    marginTop: '1.688rem',
+                    width: '30.896rem',
+                    marginTop: '3.229rem',
+                    marginBottom: '4.049rem',
                     paddingBlock: '.75rem',
                     color: 'white',
                     fontWeight: '700',
@@ -27,15 +28,16 @@ const ButtonLong = ({ children }) => {
                 </button>
             )}
 
-            {orangeLongButton (
+            {blackLongButton && (
                 <button style={{
                     display: 'inline-block',
                     textAlign: 'center',
                     textDecoration: 'none',
                     backgroundColor: '#161616',
                     border: 'none',
-                    width: '100%',
-                    marginTop: '1.688rem',
+                    width: '30.896rem',
+                    marginTop: '3.229rem',
+                    marginBottom: '4.049rem',
                     paddingBlock: '.75rem',
                     color: 'white',
                     fontWeight: '700',
