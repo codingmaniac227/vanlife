@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import './server'
 
-
+export const ButtonContext = React.createContext()
 
 function App() {
   return (
