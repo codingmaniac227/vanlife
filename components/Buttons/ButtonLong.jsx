@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonContext } from '../../App'
 
 const ButtonLong = ({ children }) => {
-    const { blackLongButton, orangeLongButton } = ButtonContext;
+    const { blackLongButton, orangeLongButton } = React.useContext(ButtonContext);
 
     return (
         <>
