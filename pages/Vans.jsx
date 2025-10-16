@@ -54,10 +54,15 @@ const Vans = () => {
         }))
     }
 
-   const activeFilters = Object.keys(filters).filter(key => filters[key])
+    const activeFilters = Object.keys(filters).filter(key => filters[key])
 
-   const filteredVans = activeFilters.length > 0
-    ? data.filter(van => activeFilters.includes(van.type.toLowerCase())) : data
+    console.time("filter-vans");
+    const filteredData =
+        activeFilters.length > 0
+            ? data.filter(van => activeFilters.includes(van.type.toLowerCase()))
+            : data;
+    console.timeEnd("filter-vans");
+
 
 
 
@@ -87,7 +92,7 @@ const Vans = () => {
 
                     { !loading && (
                         <div className="van-grid">
-                            {filteredVans.map(van => (
+                            {filteredData.map(van => (
                                 <div key={van.id} className="van">
                                     <img src={van.imageUrl} alt={van.name} className="van-img"/>
                                     <div className='van-contents'>
