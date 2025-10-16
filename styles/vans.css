@@ -1,24 +1,50 @@
 .van-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding: 4rem 5rem;
     flex-grow: 1;
+    padding: 2rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    transform: scale(0.92);
+    transform-origin: top center;
+    transition: transform 0.3s ease;
 }
 
 
+@media (max-width: 1024px) {
+    .van-container {
+        transform: scale(1);
+        padding: 1.5rem;
+    }
+}
+
+/* Fade-in animation for heading and filters */
+@keyframes fade-in-animation {
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.van-container > h1,
+.van-filters {
+    animation: fade-in-animation 1s ease-out;
+}
+
+/* Filter buttons */
 .van-filters {
     display: flex;
     gap: 2.5rem;
-    list-style-type: none;
-    padding-bottom: 3.481rem;
-    padding-top: 1.399rem;
+    list-style: none;
+    padding: 1.4rem 0 3.5rem 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .van-filters li {
     display: flex;
-    gap: 1.25rem
+    gap: 1.25rem;
 }
 
 .van-filters-btn {
@@ -27,10 +53,15 @@
     color: #4D4D4D;
     background-color: #FFEAD0;
     border-radius: 0.313rem;
-    border-style: none;
+    border: none;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.van-filters-btn:hover {
+    background-color: #e0c7a9;
 }
 
 .van-filters-btn.active {
@@ -40,51 +71,65 @@
 
 .van-clear-filters {
     cursor: pointer;
-    border-style: none;
-    text-decoration: underline solid;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
     font-size: 1rem;
     font-weight: 500;
     color: #4D4D4D;
-    background-color: transparent;
 }
 
+/* Grid for vans */
 @keyframes slide-in-animation {
-    0% {
-        transform: translateY(1.25rem);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    0% { transform: translateY(1.25rem); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
-
 
 .van-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 2.118rem;
-    column-gap: 1.682rem;
-    max-width: 1200px;
-    opacity: 1;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1100px;
     animation: slide-in-animation 1.2s ease-out forwards;
+    justify-items: center;
 }
 
+/* Individual van */
 .van {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Van image animation */
+@keyframes slide-in-animation-img {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-1rem); }
+    75% { transform: translateY(0); }
+    100% { transform: translateY(-1rem); }
+}
+
+.van:hover {
+    animation: slide-in-animation-img 1.2s ease-in forwards;
 }
 
 .van-img {
     width: 100%;
     height: auto;
     border-radius: 0.313rem;
+    border: 4px solid black;
 }
 
+/* Van contents */
 .van-contents {
     display: flex;
-    gap: 1.834rem;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.5rem;
 }
 
 .van-name {
@@ -95,10 +140,12 @@
 .van-price {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-top: 0.980rem;
+    margin-top: 0.5rem;
 }
 
 .van-price > span {
     font-size: 0.875rem;
     font-weight: 500;
 }
+
+
