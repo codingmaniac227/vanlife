@@ -4,6 +4,7 @@ import { Spinner } from 'react-spinner-toolkit'
 import Button from '/components/Buttons'
 import Error from '/components/Error'
 import '../styles/vans.css'
+import {Link} from "react-router-dom";
 
 const Vans = () => {
     const [ data, setData ] = React.useState([])
@@ -93,14 +94,16 @@ const Vans = () => {
                     { !loading && (
                         <div className="van-grid">
                             {filteredData.map(van => (
-                                <div key={van.id} className="van">
-                                    <img src={van.imageUrl} alt={van.name} className="van-img"/>
-                                    <div className='van-contents'>
-                                        <h3 className='van-name'>{van.name}</h3>
-                                        <span className='van-price'>${van.price}<br/><span>/day</span></span>
+                                <Link to={`/vans/${van.id}`}>
+                                    <div key={van.id} className="van">
+                                        <img src={van.imageUrl} alt={van.name} className="van-img"/>
+                                        <div className='van-contents'>
+                                            <h3 className='van-name'>{van.name}</h3>
+                                            <span className='van-price'>${van.price}<br/><span>/day</span></span>
+                                        </div>
+                                        <Button.Medium id={van.id}>{van.type}</Button.Medium>
                                     </div>
-                                    <Button.Medium id={van.id}>{van.type}</Button.Medium>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     )}
