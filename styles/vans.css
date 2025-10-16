@@ -1,0 +1,104 @@
+.van-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem 5rem;
+    flex-grow: 1;
+}
+
+
+.van-filters {
+    display: flex;
+    gap: 2.5rem;
+    list-style-type: none;
+    padding-bottom: 3.481rem;
+    padding-top: 1.399rem;
+}
+
+.van-filters li {
+    display: flex;
+    gap: 1.25rem
+}
+
+.van-filters-btn {
+    width: 6.438rem;
+    height: 2.313rem;
+    color: #4D4D4D;
+    background-color: #FFEAD0;
+    border-radius: 0.313rem;
+    border-style: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.van-filters-btn.active {
+    background-color: #4D4D4D;
+    color: #FFEAD0;
+}
+
+.van-clear-filters {
+    cursor: pointer;
+    border-style: none;
+    text-decoration: underline solid;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4D4D4D;
+    background-color: transparent;
+}
+
+@keyframes slide-in-animation {
+    0% {
+        transform: translateY(1.25rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.van-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.118rem;
+    column-gap: 1.682rem;
+    max-width: 1200px;
+    opacity: 1;
+    animation: slide-in-animation 1.2s ease-out forwards;
+}
+
+.van {
+    display: flex;
+    flex-direction: column;
+}
+
+.van-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.313rem;
+}
+
+.van-contents {
+    display: flex;
+    gap: 1.834rem;
+    justify-content: space-between;
+}
+
+.van-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.van-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 0.980rem;
+}
+
+.van-price > span {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
