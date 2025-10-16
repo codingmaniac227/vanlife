@@ -1,13 +1,13 @@
 import React from 'react';
 import { ButtonContext } from '../../App'
 
-const ButtonLong = ({ children }) => {
+const ButtonLong = ({ children, onClick }) => {
     const { blackLongButton, orangeLongButton } = React.useContext(ButtonContext);
 
     return (
         <>
             {orangeLongButton && (
-                <button style={{
+                <button onClick={onClick} style={{
                     display: 'inline-block',
                     textAlign: 'center',
                     textDecoration: 'none',
@@ -29,7 +29,7 @@ const ButtonLong = ({ children }) => {
             )}
 
             {blackLongButton && (
-                <button style={{
+                <button onClick={onClick} style={{
                     display: 'inline-block',
                     textAlign: 'center',
                     textDecoration: 'none',
