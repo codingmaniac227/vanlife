@@ -1,0 +1,182 @@
+.vans-listing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    flex-grow: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff7ed;
+    animation: fade-in 0.6s ease-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.back-link {
+    align-self: flex-start;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #4d4d4d;
+    margin-bottom: 2rem;
+    transition: color 0.2s ease-in;
+}
+
+.back-link:hover {
+    color: #161616;
+}
+
+/* Van listing container */
+.van-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #fff7ed;
+    padding-bottom: 3rem;
+    width: 100%;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Van image */
+.van-listing-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.2rem;
+    border-radius: 0.313rem;
+    border: 2px solid black;
+    animation: fade-in 1s ease-out 0.3s both;
+}
+
+/* Van type button (Simple / Rugged / Luxury) */
+.van-listing button {
+    margin-bottom: 1rem;
+}
+
+/* Van text info */
+.van-listing h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #161616;
+    margin-bottom: 0.5rem;
+}
+
+.van-listing span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #161616;
+}
+
+.van-listing span > span {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.van-listing p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4d4d4d;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    animation: fade-in 1s ease-out 0.4s both;
+}
+
+/* Rent button (your orange Long button) */
+.van-listing .rent-button {
+    background-color: #ff8c38;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+    animation: fade-in 1s ease-out 0.5s both;
+}
+
+.van-listing .rent-button:hover {
+    background-color: #e67526;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   📱 Responsive Layout
+   =============================== */
+@media (max-width: 768px) {
+    .vans-listing-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .van-listing h3 {
+        font-size: 1.3rem;
+    }
+
+    .van-listing span {
+        font-size: 1.1rem;
+    }
+
+    .van-listing p {
+        font-size: 0.95rem;
+    }
+
+    .back-link {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vans-listing-container {
+        padding: 1rem;
+    }
+
+    .van-listing {
+        align-items: center;
+        text-align: center;
+    }
+
+    .van-listing h3 {
+        font-size: 1.2rem;
+    }
+
+    .van-listing span {
+        font-size: 1rem;
+    }
+
+    .van-listing p {
+        font-size: 0.9rem;
+    }
+
+    .van-listing .rent-button {
+        font-size: 0.95rem;
+    }
+
+    .back-link {
+        align-self: center;
+        font-size: 0.85rem;
+    }
+}
