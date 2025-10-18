@@ -1,0 +1,20 @@
+.host-nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1.625rem 9rem 9.188rem 2.813rem;
+    height: 6.149rem;
+    width: 100%;
+}
+
+.host-nav a {
+    text-decoration: none;
+    color: #4D4D4D;
+    font-weight: 500;
+    font-size: 1.10rem;
+}
+
+.host-nav a:hover {
+    text-decoration: underline;
+    color: #161616;
+    font-weight: 700;
+}
