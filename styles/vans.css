@@ -1,3 +1,5 @@
+
+
 .van-container {
     display: flex;
     justify-content: center;
@@ -83,6 +85,12 @@
 .van {
     display: flex;
     flex-direction: column;
+}
+
+.van-link,
+.van-link:visited {
+    text-decoration: none;
+    color: #161616;
 }
 
 /* Image hover animation */
