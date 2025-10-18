@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
-import '../styles/vanslisting.css';
-import Button from "../components/Buttons";
+import '../../styles/vanslisting.css';
+import Button from "../../components/Buttons";
 import { Spinner } from 'react-spinner-toolkit'
-import Error from "../components/Error";
-import {ButtonContext} from "../App";
+import Error from "../../components/Error";
+import {ButtonContext} from "../../App";
 
 
 const VansListing = () => {

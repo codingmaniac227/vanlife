@@ -1,9 +1,9 @@
 import React from 'react';
-import {ButtonContext} from "../App";
+import {ButtonContext} from "../../App";
 import { Spinner } from 'react-spinner-toolkit'
 import Button from '/components/Buttons'
 import Error from '/components/Error'
-import '../styles/vans.css'
+import '../../styles/vans.css'
 import {Link} from "react-router-dom";
 
 const Vans = () => {
@@ -94,7 +94,7 @@ const Vans = () => {
                     { !loading && (
                         <div className="van-grid">
                             {filteredData.map(van => (
-                                <Link to={`/vans/${van.id}`}>
+                                <Link key={van.id} className='van-link' to={`/vans/${van.id}`}>
                                     <div key={van.id} className="van">
                                         <img src={van.imageUrl} alt={van.name} className="van-img"/>
                                         <div className='van-contents'>
