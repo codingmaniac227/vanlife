@@ -23,12 +23,6 @@
     line-height: 24px;
 }
 
-a,
-a:visited {
-    color: inherit;
-    text-decoration: none;
-}
-
 button:hover {
     transition: transform .1s ease-in-out;
     transform: translate(0.125rem, 0.125rem);

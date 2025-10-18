@@ -1,3 +1,4 @@
+
 header {
     height: 110px;
     display: flex;
@@ -11,16 +12,28 @@ header .site-logo {
     text-transform: uppercase;
     font-weight: 900;
     font-size: 25px;
+    padding-left: 1.2rem;
+    text-decoration: none;
 }
 
-header a {
+.site-logo:hover {
+    text-decoration: underline;
+}
+
+.navbar-link {
     text-decoration: none;
     color: #4D4D4D;
     font-weight: 600;
     padding: 5px 20px;
 }
 
-header a:hover {
+.navbar-link,
+.navbar-link:visited {
+    color: #4D4D4D;
+    text-decoration: none;
+}
+
+.navbar-link:hover {
     color: #161616;
     text-decoration: underline;
 }
