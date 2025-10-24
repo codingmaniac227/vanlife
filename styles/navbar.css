@@ -16,41 +16,25 @@ header .site-logo {
     text-decoration: none;
 }
 
-.site-logo:hover {
-    text-decoration: underline;
-}
-
-.navbar-link {
+.nav-links {
+    display: inline-flex;
+    gap: 2rem;
     text-decoration: none;
     color: #4D4D4D;
     font-weight: 600;
     padding: 5px 20px;
 }
 
-.navbar-link,
-.navbar-link:visited {
-    color: #4D4D4D;
+
+.nav-links > a,
+.nav-links > a:visited {
+    color: #4d4d4d;
     text-decoration: none;
 }
 
-.navbar-link:hover {
+.nav-links > a:hover {
     color: #161616;
     text-decoration: underline;
 }
 
-.link-button {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    padding: .75rem 1.375rem;
-    color: initial;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform .1s ease-in-out;
-}
 
-.link-button:hover {
-    transform: translate(1px, 1px);
-}
