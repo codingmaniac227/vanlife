@@ -8,6 +8,7 @@ export const getVans = async (req, res, next) => {
         const vans = await Van.getAllVans({ type })
         res.status(200).json({ vans })
     } catch (error) {
+        console.error('Error in getAllVans', error)
         next(error)
     }
 }
