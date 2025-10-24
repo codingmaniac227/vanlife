@@ -1,15 +1,17 @@
 import React from 'react';
-import {Link, Outlet} from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import '/styles/hostnavbar.css'
 
 const HostWebpage = () => {
+
+    const styles = { textDecoration: "underline", color: "#161616", fontWeight: '700', fontSize: '1.10rem' }
     return (
         <>
             <nav className="host-nav">
-                <Link to="/host">Dashboard</Link>
-                <Link to="/host/income">Income</Link>
-                <Link to="/host/vans">Vans</Link>
-                <Link to="/host/reviews">Reviews</Link>
+                <NavLink style={({isActive}) => isActive ? styles : null } end to='.'>Dashboard</NavLink>
+                <NavLink style={({isActive}) => isActive ? styles : null } to="income">Income</NavLink>
+                <NavLink style={({isActive}) => isActive ? styles : null } to="vans">Vans</NavLink>
+                <NavLink style={({isActive}) => isActive ? styles : null } to="reviews">Reviews</NavLink>
             </nav>
             <Outlet />
         </>
