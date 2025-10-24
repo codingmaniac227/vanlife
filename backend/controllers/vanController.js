@@ -2,7 +2,10 @@ import * as Van from "../models/vanModel.js"
 
 export const getVans = async (req, res, next) => {
     try {
-        const vans = await Van.getAllVans()
+        console.log('Incoming filters:', req.query);
+
+        const type = req.query.type
+        const vans = await Van.getAllVans({ type })
         res.status(200).json({ vans })
     } catch (error) {
         next(error)
