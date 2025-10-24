@@ -6,7 +6,6 @@ import { Spinner } from 'react-spinner-toolkit'
 import Error from "../../components/Error";
 import {ButtonContext} from "../../App";
 
-
 const VansListing = () => {
     const [ data, setData ] = useState([]);
     const [ loading, setLoading ] = useState(false);
@@ -22,7 +21,8 @@ const VansListing = () => {
             setError(null);
 
             try {
-                const res = await fetch(`http://localhost:5000/api/vans/${params.id}`)
+                const baseURL = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_LOCAL_URL : import.meta.env.VITE_API_URL;
+                const res = await fetch(`${baseURL}/api/vans/${params.id}`)
                 if (!res.ok) {
                     setError(`Error fetching ${params.id}: ${res.status} ${res.statusText}`);
                     setLoading(false);
