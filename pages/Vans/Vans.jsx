@@ -34,8 +34,8 @@ const Vans = () => {
             const params = new URLSearchParams()
             type.forEach(type => params.append('type', type))
 
-            const url = type.length ? `${baseURL}?${params.toString()}` : baseURL
-
+            const url = type.length ? `${baseURL}/api/vans?${params.toString()}` : `${baseURL}/api/vans`
+            console.log(url)
             try {
                 const res = await fetch(url);
                 if (!res.ok) {
