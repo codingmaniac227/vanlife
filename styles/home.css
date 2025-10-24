@@ -17,6 +17,7 @@
     font-weight: 700;
     font-size: 2.25rem;
     line-height: 42px;
+    flex-grow: 0;
 }
 
 .home-container p {
