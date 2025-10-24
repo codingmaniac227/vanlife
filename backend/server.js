@@ -12,10 +12,12 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin: `http://localhost:${process.env.CORSORIGIN}`,
+    origin: [process.env.LOCALCORSORIGIN, process.env.CORSORIGIN],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
+
+
 app.use(express.json())
 
 // Routes
