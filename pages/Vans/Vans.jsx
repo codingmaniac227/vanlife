@@ -5,33 +5,43 @@ import Button from '/components/Buttons'
 import Error from '/components/Error'
 import '../../styles/vans.css'
 import {Link} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Vans = () => {
     const [ data, setData ] = React.useState([])
     const [ loading, setLoading ] = React.useState(false);
     const [ error, setError ] = React.useState(null);
     const [ refetch , setRefetch ] = React.useState(false)
-    const [ filters, setFilters ] = React.useState({
-        simple: false,
-        luxury: false,
-        rugged: false
-    })
+    const [ searchParams, setSearchParams] = useSearchParams()
+
+    const type = searchParams.getAll('type')
+    const typesKey = React.useMemo(
+        () => type.slice().sort().join('|'),
+        [type]
+    );
 
     React.useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             setError(null)
 
+            let base = 'http://localhost:5000/api/vans'
+            const params = new URLSearchParams()
+            type.forEach(type => params.append('type', type))
+
+            const url = type.length ? `${base}?${params.toString()}` : base
+
             try {
-                const res = await fetch('/api/vans');
+                const res = await fetch(url);
                 if (!res.ok) {
                     setError(`Failed to fetch vans: ${res.status} ${res.statusText}`)
                     setLoading(false)
                     return
                 }
-                const d = await res.json()
-                console.log(d)
-                setData(d.vans)
+
+                const data = await res.json()
+                console.log(data.vans)
+                setData(data.vans)
             } catch(err) {
                 console.error('Network or parsing error:', err)
                 setError('Something went wrong. Please try again later')
@@ -42,47 +52,47 @@ const Vans = () => {
         }
         console.log('Fetching vans data...')
         fetchData()
-    }, [refetch])
+    }, [refetch, typesKey])
 
     function handleRefetch() {
         setRefetch(prevFetch => !prevFetch)
     }
 
-    function toggleFilter(type) {
-        setFilters(prev => ({
-            ...prev,
-            [type]: !prev[type]
-        }))
-    }
+    const handleAddType = (addType) => {
+        const newParams = new URLSearchParams(searchParams)
 
-    const activeFilters = Object.keys(filters).filter(key => filters[key])
+        const currentTypes = newParams.getAll('type')
 
-    console.time("filter-vans");
-    const filteredData =
-        activeFilters.length > 0
-            ? data.filter(van => activeFilters.includes(van.type.toLowerCase()))
-            : data;
-    console.timeEnd("filter-vans");
+        if (currentTypes.includes(addType)) {
+            const filteredTypes = currentTypes.filter((type) => type !== addType)
+            newParams.delete('type')
+            filteredTypes.forEach((type) => newParams.append('type', type))
+        } else {
+            newParams.append('type', addType)
+        }
 
-
-
+        setSearchParams(newParams)
+    };
 
     return (
         <>
             <ButtonContext.Provider value={{data, blackLongButton: true}}>
+                {!error && (
+
                 <section className="van-container">
                     <h1>Explore Our Van Options</h1>
                     <ul className="van-filters">
                         <li>
-                            <button className={`van-filters-btn ${filters.simple ? "active" : ""}`} onClick={() => toggleFilter('simple')}>Simple</button>
-                            <button className={`van-filters-btn ${filters.luxury ? "active" : ""}`} onClick={() => toggleFilter('luxury')}>Luxury</button>
-                            <button className={`van-filters-btn ${filters.rugged ? "active" : ""}`} onClick={() => toggleFilter('rugged')}>Rugged</button>
+                            <button className='van-filters-btn' onClick={() => handleAddType('simple')}>Simple</button>
+                            <button className='van-filters-btn' onClick={() => handleAddType('luxury')}>Luxury</button>
+                            <button className='van-filters-btn' onClick={() => handleAddType('rugged')}>Rugged</button>
                         </li>
-                        <li><button className='van-clear-filters'
-                                    onClick={() => setFilters({ simple: false, luxury: false, rugged: false })}>
-                                Clear filters
-                            </button>
-                        </li>
+                        {typesKey && (
+                            <li><button className='van-clear-filters' onClick={() => setSearchParams({})}>
+                                    Clear filters
+                                </button>
+                            </li>
+                        )}
                     </ul>
 
                     { loading && (
@@ -93,10 +103,10 @@ const Vans = () => {
 
                     { !loading && (
                         <div className="van-grid">
-                            {filteredData.map(van => (
-                                <Link key={van.id} className='van-link' to={`/vans/${van.id}`}>
-                                    <div key={van.id} className="van">
-                                        <img src={van.imageUrl} alt={van.name} className="van-img"/>
+                            {data.map(van => (
+                                <Link key={van.id} className='van-link' to={`/vans/${van.id}`} state={{ search: location.search }}>
+                                    <div className="van">
+                                        <img src={van.imageurl} alt={van.name} className="van-img"/>
                                         <div className='van-contents'>
                                             <h3 className='van-name'>{van.name}</h3>
                                             <span className='van-price'>${van.price}<br/><span>/day</span></span>
@@ -107,11 +117,13 @@ const Vans = () => {
                             ))}
                         </div>
                     )}
-
-                    { error && (
-                        <Error message={error}><Button.Long onClick={handleRefetch}>Reload Vans</Button.Long></Error>
-                    )}
                 </section>
+                )}
+                {error && (
+                    <Error message={error}>
+                        <Button.Long onClick={handleRefetch}>Reload Vans</Button.Long>
+                    </Error>
+                )}
             </ButtonContext.Provider>
         </>
     );
