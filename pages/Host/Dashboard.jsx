@@ -3,6 +3,7 @@ import '/styles/dashboard.css'
 
 
 const Dashboard = () => {
+
     return (
         <>
             <h1>This is the host page!</h1>
