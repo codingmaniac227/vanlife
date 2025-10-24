@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, useLocation} from 'react-router-dom';
 import '../../styles/vanslisting.css';
 import Button from "../../components/Buttons";
 import { Spinner } from 'react-spinner-toolkit'
@@ -14,6 +14,7 @@ const VansListing = () => {
     const [ refetch, setRefetch ] = useState(false);
 
     const params = useParams();
+    const location = useLocation();
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -21,7 +22,7 @@ const VansListing = () => {
             setError(null);
 
             try {
-                const res = await fetch(`/api/vans/${params.id}`)
+                const res = await fetch(`http://localhost:5000/api/vans/${params.id}`)
                 if (!res.ok) {
                     setError(`Error fetching ${params.id}: ${res.status} ${res.statusText}`);
                     setLoading(false);
@@ -29,8 +30,8 @@ const VansListing = () => {
                 }
                 const data = await res.json();
 
-                console.log(data.vans)
-                setData(data.vans);
+                console.log(data.van)
+                setData(data.van);
             } catch (err) {
                 console.error('Network or parsing error:', err)
                 setError(`Failed to fetch van. Please try again later.`);
@@ -39,13 +40,15 @@ const VansListing = () => {
             }
         }
         fetchData();
-    },[params, refetch])
+    },[params.id, refetch])
 
     function handleRefetch() {
         setRefetch(prevFetch => !prevFetch)
     }
 
     let auth = false;
+
+    const search = location.state?.search || ""
 
     if (error && !loading) {
         return (
@@ -71,12 +74,12 @@ const VansListing = () => {
                 )}
                 { !loading && !error && (
                     <section className="vans-listing-container">
-                        <Link to='/vans' className='back-link'>
-                            ← Back to all vans
+                        <Link to={`..${search}`} relative='path' className='back-link'>
+                            ← Back to vans
                         </Link>
 
                         <div key={data.id} className="van-listing">
-                            <img src={data.imageUrl} alt={data.name} className="van-listing-img" />
+                            <img src={data.imageurl} alt={data.name} className="van-listing-img" />
                             <Button.Medium id={data.id}>{data.type}</Button.Medium>
                             <div>
                                 <h3>{data.name}</h3>
